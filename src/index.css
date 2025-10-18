@@ -1,2 +1,85 @@
 @import "tailwindcss";
-@plugin "daisyui";
+/* If you're using daisyUI as a Tailwind plugin, configure it in your Tailwind config instead of using @plugin here. */
+
+/* Auth modal styles */
+.auth-backdrop {
+	background: rgba(15, 23, 42, 0.5); /* semi-dark overlay */
+	backdrop-filter: blur(6px);
+}
+
+.perspective {
+	perspective: 1200px;
+}
+
+.auth-inner {
+	width: 100%;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.auth-face {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.auth-front {
+	transform: rotateY(0deg);
+}
+
+.auth-back {
+	transform: rotateY(180deg);
+}
+
+.auth-inner.flipped {
+	transform: rotateY(180deg);
+}
+
+/* small responsiveness */
+@media (min-width: 768px) {
+	.auth-card { width: 420px; }
+}
+
+/* Dark mode overrides */
+:root { --bg: #f3f4f6; --text: #111827; --muted: #6b7280 }
+.dark :root { --bg: #0b1220; --text: #e6eef7; --muted: #9ca3af }
+.dark body { background: #071029 }
+.dark .bg-white { background: #071029 }
+.dark .text-black { color: var(--text) }
+
+/* Smooth theme transitions */
+html, body, .theme-transition * {
+	transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+/* Dark mode color mappings for common utility classes used in components */
+.dark .bg-white { background-color: #071029 !important; }
+.dark .bg-gray-50 { background-color: #071428 !important; }
+.dark .bg-blue-100 { background-color: #0b2740 !important; }
+.dark .bg-blue-500 { background-color: #1e3a8a !important; }
+.dark .bg-blue-600 { background-color: #1e40af !important; }
+.dark .bg-emerald-600 { background-color: #065f46 !important; }
+.dark .bg-gray-200 { background-color: #0b1622 !important; }
+
+.dark .text-gray-900, .dark .text-gray-800, .dark .text-black { color: #e6eef7 !important; }
+.dark .text-gray-700 { color: #cbd5e1 !important; }
+.dark .text-gray-600 { color: #9ca3af !important; }
+.dark .text-gray-500 { color: #94a3b8 !important; }
+
+.dark .border-gray-300, .dark .border-gray-200, .dark .border { border-color: #1f2937 !important; }
+.dark .shadow-md { box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important; }
+
+/* Buttons */
+.dark .bg-blue-600 { background-color: #1e40af !important; }
+.dark .bg-green-500 { background-color: #059669 !important; }
+.dark .bg-gray-700 { background-color: #0f1724 !important; }
+.dark .hover\:bg-blue-700:hover { background-color: #1e3a8a !important; }
+
+/* Inputs */
+.dark input, .dark textarea, .dark select { background-color: #071428 !important; color: #e6eef7 !important; border-color: #19303f !important; }
+
+/* Navbar specific */
+.dark nav { background: #071029 !important; border-color: #0f1724 !important; }
+

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Mic, MessageCircle } from "lucide-react";
 import { FaUserCog, FaFileAlt, FaRocket } from "react-icons/fa";
 import resumeImg from "../assets/resume.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../router";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+  const { user, openAuth } = useContext(AuthContext);
   const features = [
     {
       icon: FaUserCog,
@@ -42,19 +45,15 @@ export default function HomePage() {
             voice or chat.
           </p>
        <div className="flex space-x-4 mb-6">
-  <Link to="/chat">
-    <button className="flex items-center px-5 py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-lg font-semibold hover:opacity-90 transition">
+  <button onClick={()=>{ if(!user) { openAuth(); } else { navigate('/chat'); } }} className="flex items-center px-5 py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-lg font-semibold hover:opacity-90 transition">
       <Mic className="w-5 h-5 mr-2" />
       Start with Voice
     </button>
-  </Link>
 
-  <Link to="/chat">
-    <button className="flex items-center px-5 py-3 border-2 border-blue-500 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition">
+    <button onClick={()=>{ if(!user) { openAuth(); } else { navigate('/chat'); } }} className="flex items-center px-5 py-3 border-2 border-blue-500 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition">
       <MessageCircle className="w-5 h-5 mr-2" />
       Start with Chat
     </button>
-  </Link>
 </div>
 
 
