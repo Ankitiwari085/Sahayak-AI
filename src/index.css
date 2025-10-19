@@ -71,6 +71,11 @@ html, body, .theme-transition * {
 .dark .border-gray-300, .dark .border-gray-200, .dark .border { border-color: #1f2937 !important; }
 .dark .shadow-md { box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important; }
 
+/* Ensure the auth card doesn't produce an outer scrollbar; inner content can scroll */
+.auth-card { overflow: hidden !important; }
+
+/* Keep internal scrollbars visible so users can see and interact with overflowing content */
+
 /* Buttons */
 .dark .bg-blue-600 { background-color: #1e40af !important; }
 .dark .bg-green-500 { background-color: #059669 !important; }

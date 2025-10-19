@@ -20,7 +20,7 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
   },[theme]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm border-b">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 shadow-md border-b border-gray-200 backdrop-blur-sm">
       <div className="flex justify-between items-center h-16 px-4 md:px-8">
         {/* Left side - Logo */}
         <div className="flex items-center space-x-2">
@@ -31,31 +31,33 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
         </div>
 
         {/* Right side - Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6 text-gray-700 font-medium">
+        <div className="hidden md:flex items-center space-x-4 text-gray-700 font-medium">
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/services">Services</Link>
           <Link to="/contact">Contact</Link>
-          {!user ? (
-            <div className="flex items-center space-x-3">
-              <button onClick={() => setTheme(theme==='light'?'dark':'light')} className="p-2 rounded hover:bg-gray-100">
-                {theme === 'light' ? <FiMoon /> : <FiSun />}
-              </button>
+          <div className="flex items-center space-x-2">
+            {/* theme toggle - always visible */}
+            <button onClick={() => setTheme(theme==='light'?'dark':'light')} className="p-2 rounded hover:bg-gray-100" aria-label="Toggle theme">
+              {theme === 'light' ? <FiMoon /> : <FiSun />}
+            </button>
+
+            {!user ? (
               <button onClick={() => onAuthClick && onAuthClick()} className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">Login</button>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-3">
-              <button onClick={() => onApplyClick && onApplyClick()} className="px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">Apply</button>
-              <div className="relative" ref={profileRef}>
-                <button onClick={() => setMenuOpenProfile(!menuOpenProfile)} className="text-2xl text-gray-700"><FaUserCircle /></button>
-                {menuOpenProfile && (
-                  <div className="absolute right-0 mt-2">
-                    <ProfileMenu onProfile={()=>onProfileAction('profile')} onApplications={()=>onProfileAction('applications')} onNotifications={()=>onProfileAction('notifications')} onSettings={()=>onProfileAction('settings')} onSignOut={()=>onProfileAction('signout')} />
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+            ) : (
+              <>
+                <button onClick={() => onApplyClick && onApplyClick()} className="px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">Apply</button>
+                <div className="relative" ref={profileRef}>
+                  <button onClick={() => setMenuOpenProfile(!menuOpenProfile)} className="text-2xl text-gray-700"><FaUserCircle /></button>
+                  {menuOpenProfile && (
+                    <div className="absolute right-0 mt-2">
+                      <ProfileMenu onProfile={()=>onProfileAction('profile')} onApplications={()=>onProfileAction('applications')} onNotifications={()=>onProfileAction('notifications')} onSettings={()=>onProfileAction('settings')} onSignOut={()=>onProfileAction('signout')} />
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Mobile Hamburger */}
@@ -110,9 +112,14 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
               </Link>
             </li>
             <li>
-              <button onClick={() => onAuthClick && onAuthClick()} className="w-full px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">
-                Login
-              </button>
+              <div className="flex items-center space-x-2">
+                <button onClick={() => setTheme(theme==='light'?'dark':'light')} className="p-2 rounded hover:bg-gray-100" aria-label="Toggle theme">
+                  {theme === 'light' ? <FiMoon /> : <FiSun />}
+                </button>
+                <button onClick={() => onAuthClick && onAuthClick()} className="w-full px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">
+                  Login
+                </button>
+              </div>
             </li>
           </ul>
         </div>
