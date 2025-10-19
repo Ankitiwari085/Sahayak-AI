@@ -54,6 +54,11 @@ html, body, .theme-transition * {
 	transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
 }
 
+/* Smooth scrolling for anchor links */
+html {
+	scroll-behavior: smooth;
+}
+
 /* Dark mode color mappings for common utility classes used in components */
 .dark .bg-white { background-color: #071029 !important; }
 .dark .bg-gray-50 { background-color: #071428 !important; }

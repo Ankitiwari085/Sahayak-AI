@@ -10,14 +10,22 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
   const [menuOpenProfile, setMenuOpenProfile] = useState(false);
   const profileRef = useRef();
   const [theme, setTheme] = useState(() => {
-    try { return localStorage.getItem('theme') || 'light' } catch(e){ return 'light' }
+    try {
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored;
+      // fallback to system preference
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+      return 'light';
+    } catch (e) {
+      return 'light';
+    }
   });
 
-  useEffect(()=>{
-    if(theme === 'dark') document.documentElement.classList.add('dark');
+  useEffect(() => {
+    if (theme === 'dark') document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
-    try{ localStorage.setItem('theme', theme) }catch(e){}
-  },[theme]);
+    try { localStorage.setItem('theme', theme) } catch (e) {}
+  }, [theme]);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 shadow-md border-b border-gray-200 backdrop-blur-sm">
@@ -27,20 +35,30 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
           <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center text-white font-bold">
             📄
           </div>
-          <Link to="/" className="text-xl font-semibold text-gray-800">ResumeAI</Link>
+          <Link to="/" className="text-xl font-semibold text-gray-800">SahayakAI</Link>
         </div>
 
         {/* Right side - Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4 text-gray-700 font-medium">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/contact">Contact</Link>
+          <a href="#services" className="hover:text-blue-600">Services</a>
+          <a href="#about" className="hover:text-blue-600">About</a>
+          <Link to="/contact" className="hover:text-blue-600">Contact</Link>
           <div className="flex items-center space-x-2">
             {/* theme toggle - always visible */}
-            <button onClick={() => setTheme(theme==='light'?'dark':'light')} className="p-2 rounded hover:bg-gray-100" aria-label="Toggle theme">
-              {theme === 'light' ? <FiMoon /> : <FiSun />}
-            </button>
+            <div>
+              <button
+                onClick={() => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))}
+                title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
+                className={`p-2 rounded hover:bg-gray-100`}
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <FiSun className="text-yellow-500 w-5 h-5" />
+                ) : (
+                  <FiMoon className="text-gray-600 w-5 h-5" />
+                )}
+              </button>
+            </div>
 
             {!user ? (
               <button onClick={() => onAuthClick && onAuthClick()} className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">Login</button>
@@ -113,9 +131,20 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
             </li>
             <li>
               <div className="flex items-center space-x-2">
-                <button onClick={() => setTheme(theme==='light'?'dark':'light')} className="p-2 rounded hover:bg-gray-100" aria-label="Toggle theme">
-                  {theme === 'light' ? <FiMoon /> : <FiSun />}
-                </button>
+                <div>
+                  <button
+                    onClick={() => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))}
+                    title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
+                    className={`p-2 rounded hover:bg-gray-100`}
+                    aria-label="Toggle theme"
+                  >
+                    {theme === 'dark' ? (
+                      <FiSun className="text-yellow-500 w-5 h-5" />
+                    ) : (
+                      <FiMoon className="text-gray-600 w-5 h-5" />
+                    )}
+                  </button>
+                </div>
                 <button onClick={() => onAuthClick && onAuthClick()} className="w-full px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">
                   Login
                 </button>

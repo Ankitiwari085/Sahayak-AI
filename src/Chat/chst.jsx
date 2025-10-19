@@ -188,45 +188,56 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow-xl overflow-hidden">
-        <div className="p-6 border-b">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-lg font-semibold">Resume Builder Chat</h2>
-              <p className="text-sm text-gray-500">Answer a few questions and we'll build your resume</p>
-            </div>
-            <div className="text-sm text-gray-600">{progress}% Complete</div>
-          </div>
-        </div>
-
-        <div className="p-6">
-          <div className="h-72 overflow-y-auto p-4 space-y-4 bg-gray-50 rounded-lg">
-            {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] rounded-2xl px-4 py-3 ${msg.role === 'ai' ? 'bg-blue-100 text-gray-800 border border-blue-200' : 'bg-gray-700 text-white shadow-sm'}`}>
-                  {msg.content}
+      <div className={`w-full ${resumeReady ? 'max-w-7xl' : 'max-w-3xl'} transition-all duration-500`}>
+        <div className={`grid ${resumeReady ? 'grid-cols-2' : 'grid-cols-1'} gap-6`}>
+          {/* Chat Section - Left Side */}
+          <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+            <div className="p-6 border-b">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold">Resume Builder Chat</h2>
+                  <p className="text-sm text-gray-500">Answer a few questions and we'll build your resume</p>
                 </div>
+                <div className="text-sm text-gray-600">{progress}% Complete</div>
               </div>
-            ))}
-            <div ref={messagesEndRef} />
+            </div>
+
+            <div className="p-6">
+              <div className="h-72 overflow-y-auto p-4 space-y-4 bg-gray-50 rounded-lg">
+                {messages.map((msg, i) => (
+                  <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[80%] rounded-2xl px-4 py-3 ${msg.role === 'ai' ? 'bg-blue-100 text-gray-800 border border-blue-200' : 'bg-gray-700 text-white shadow-sm'}`}>
+                      {msg.content}
+                    </div>
+                  </div>
+                ))}
+                <div ref={messagesEndRef} />
+              </div>
+
+              <div className="mt-4 flex items-center gap-3">
+                <Button size="lg" variant={isRecording ? 'default' : 'outline'} className={isRecording ? 'bg-green-500 text-white animate-pulse' : ''} onClick={() => setIsRecording(!isRecording)}>
+                  <FiMic className="w-6 h-6" />
+                </Button>
+
+                <Input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSend()} placeholder="Type your answer..." className="flex-1" />
+
+                <Button size="lg" variant="default" onClick={handleSend}>
+                  <FiSend className="w-6 h-6" />
+                </Button>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-4 flex items-center gap-3">
-            <Button size="lg" variant={isRecording ? 'default' : 'outline'} className={isRecording ? 'bg-green-500 text-white animate-pulse' : ''} onClick={() => setIsRecording(!isRecording)}>
-              <FiMic className="w-6 h-6" />
-            </Button>
-
-            <Input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSend()} placeholder="Type your answer..." className="flex-1" />
-
-            <Button size="lg" variant="default" onClick={handleSend}>
-              <FiSend className="w-6 h-6" />
-            </Button>
-          </div>
-
+          {/* Resume Preview Section - Right Side (Only shown when resumeReady is true) */}
           {resumeReady && (
-            <div className="mt-6">
-              <h3 className="font-semibold mb-2">Your generated resume</h3>
-              <ResumePreview data={resumeData} />
+            <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+              <div className="p-6 border-b">
+                <h3 className="text-lg font-semibold">Your Resume Preview</h3>
+                <p className="text-sm text-gray-500">Review and download your professional resume</p>
+              </div>
+              <div className="p-6 h-[calc(100vh-200px)] overflow-hidden">
+                <ResumePreview data={resumeData} />
+              </div>
             </div>
           )}
         </div>
