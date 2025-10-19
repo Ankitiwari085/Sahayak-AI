@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiClock } from 'react-icons/fi';
 import { FaLinkedin, FaGithub, FaTwitter, FaFacebook } from 'react-icons/fa';
@@ -70,7 +72,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 transition-colors pt-16">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-blue-50/30 to-white dark:from-slate-900 dark:to-slate-800 dark:bg-gradient-to-b transition-colors pt-16">
       {/* Hero Section */}
       <motion.section
         initial="hidden"
@@ -99,7 +101,7 @@ export default function Contact() {
 
           <motion.p
             variants={fadeInUp}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+            className="text-lg md:text-xl text-gray-800 dark:text-gray-300 leading-relaxed font-medium"
           >
             Have questions, feedback, or need support? We're here to help! 
             Reach out to us through any of the channels below and our team will get back to you as soon as possible.
@@ -130,20 +132,36 @@ export default function Contact() {
                 href={card.link}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                className="relative bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer overflow-hidden"
               >
-                <div className={`w-14 h-14 bg-gradient-to-br ${colorClasses[card.color]} rounded-2xl flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300`}>
-                  <card.icon className="text-white text-2xl" />
+                <div 
+                  className="absolute inset-0 border-2 rounded-2xl pointer-events-none dark:border-slate-700"
+                  style={{
+                    borderColor: card.color === 'blue' ? '#bfdbfe' : 
+                                card.color === 'green' ? '#bbf7d0' : 
+                                card.color === 'purple' ? '#e9d5ff' : '#fed7aa'
+                  }}
+                ></div>
+                <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-300 ${
+                  card.color === 'blue' ? 'from-blue-50 to-cyan-50' :
+                  card.color === 'green' ? 'from-green-50 to-emerald-50' :
+                  card.color === 'purple' ? 'from-purple-50 to-pink-50' :
+                  'from-orange-50 to-amber-50'
+                } dark:from-transparent dark:to-transparent`}></div>
+                <div className="relative">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${colorClasses[card.color]} rounded-2xl flex items-center justify-center mb-4 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <card.icon className="text-white text-2xl" />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-900 dark:text-gray-200 font-semibold mb-1">
+                    {card.info}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                    {card.subInfo}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                  {card.title}
-                </h3>
-                <p className="text-gray-800 dark:text-gray-200 font-medium mb-1">
-                  {card.info}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {card.subInfo}
-                </p>
               </motion.a>
             );
           })}
@@ -151,7 +169,7 @@ export default function Contact() {
       </section>
 
       {/* Main Contact Section */}
-      <section className="bg-white dark:bg-slate-800 py-16 md:py-20 transition-colors">
+      <section className="min-h-screen bg-gradient-to-b from-gray-50 via-blue-50/30 to-white dark:from-slate-900 dark:to-slate-800 dark:bg-gradient-to-b transition-colors pt-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -162,15 +180,18 @@ export default function Contact() {
           >
             {/* Contact Form */}
             <motion.div variants={fadeInUp} className="order-2 lg:order-1">
-              <div className="bg-gradient-to-br from-gray-50 to-white dark:from-slate-700 dark:to-slate-600 p-8 rounded-3xl shadow-xl">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                  Send Us a Message
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-8">
-                  Fill out the form below and we'll get back to you within 24 hours
-                </p>
+              <div className="relative bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-700 dark:to-slate-600 dark:bg-gradient-to-br p-8 rounded-3xl shadow-2xl border-2 border-blue-200 dark:border-slate-600 overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-transparent dark:to-transparent rounded-full blur-3xl opacity-60"></div>
+                <div className="relative">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                    Send Us a Message
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 font-medium">
+                    Fill out the form below and we'll get back to you within 24 hours
+                  </p>
+                </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 relative">
                   <motion.div
                     whileFocus={{ scale: 1.02 }}
                     className="relative"
@@ -180,7 +201,7 @@ export default function Contact() {
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all duration-300"
+                      className="w-full px-4 py-4 rounded-xl border-2 border-blue-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:border-blue-400 dark:focus:ring-0 outline-none transition-all duration-300 font-medium shadow-sm"
                       required
                     />
                   </motion.div>
@@ -194,7 +215,7 @@ export default function Contact() {
                       placeholder="Your Email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all duration-300"
+                      className="w-full px-4 py-4 rounded-xl border-2 border-blue-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:border-blue-400 dark:focus:ring-0 outline-none transition-all duration-300 font-medium shadow-sm"
                       required
                     />
                   </motion.div>
@@ -208,22 +229,23 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={6}
-                      className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all duration-300 resize-none"
+                      className="w-full px-4 py-4 rounded-xl border-2 border-gray-700 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-200 placeholder-gray-600 dark:placeholder-gray-500 focus:border-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:border-blue-400 dark:focus:ring-0 outline-none transition-all duration-300 font-medium resize-none shadow-sm"
                       required
                     />
                   </motion.div>
 
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                    className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden group"
                   >
-                    <FiSend className="text-xl" />
-                    Send Message
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <FiSend className="text-xl relative z-10" />
+                    <span className="relative z-10">Send Message</span>
                   </motion.button>
 
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 justify-center">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 justify-center font-medium">
                     <FiClock />
                     <span>We typically respond within 24 hours</span>
                   </div>
@@ -249,24 +271,27 @@ export default function Contact() {
               </motion.div>
 
               {/* Social Media Links */}
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 p-8 rounded-3xl shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  Connect With Us
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Follow us on social media for updates, tips, and success stories
-                </p>
+              <div className="relative bg-gradient-to-br from-white to-purple-50/50 dark:from-slate-700 dark:to-slate-600 dark:bg-gradient-to-br p-8 rounded-3xl shadow-xl border-2 border-purple-200 dark:border-slate-600 overflow-hidden">
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-100 to-pink-100 dark:from-transparent dark:to-transparent rounded-full blur-3xl opacity-60"></div>
+                <div className="relative">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    Connect With Us
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 font-medium">
+                    Follow us on social media for updates, tips, and success stories
+                  </p>
+                </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 relative">
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={index}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05, y: -3 }}
+                      whileHover={{ scale: 1.08, y: -5 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`bg-gradient-to-br ${social.color} p-4 rounded-xl flex items-center gap-3 text-white shadow-md hover:shadow-xl transition-all duration-300`}
+                      className={`bg-gradient-to-br ${social.color} p-4 rounded-xl flex items-center gap-3 text-white shadow-lg hover:shadow-2xl transition-all duration-300`}
                     >
                       <social.icon className="text-2xl" />
                       <span className="font-semibold">{social.name}</span>
@@ -281,21 +306,24 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="mt-8 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg"
+                className="mt-8 relative bg-gradient-to-br from-white to-amber-50/50 dark:bg-slate-800 p-6 rounded-2xl shadow-xl border-2 border-orange-200 dark:border-slate-600 overflow-hidden"
               >
-                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                  Need Quick Answers?
-                </h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Check out our FAQ section for instant solutions to common questions
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
-                >
-                  Visit FAQ
-                </motion.button>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-amber-100 dark:bg-transparent rounded-full blur-2xl opacity-50"></div>
+                <div className="relative">
+                  <h4 className="text-lg font-bold !text-black dark:!text-black mb-3">
+                    Need Quick Answers?
+                  </h4>
+                  <p className="text-black-700 dark:text-black-300 mb-4 font-medium">
+                    Check out our FAQ section for instant solutions to common questions
+                  </p>
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 dark:bg-white text-white dark:text-gray-900 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    Visit FAQ
+                  </motion.button>
+                </div>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -310,14 +338,17 @@ export default function Contact() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-700 dark:to-slate-600 rounded-3xl overflow-hidden shadow-2xl h-96 flex items-center justify-center"
+            className="relative bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 rounded-3xl overflow-hidden shadow-2xl h-96 flex items-center justify-center border-2 border-blue-200 dark:border-slate-600"
           >
-            <div className="text-center">
-              <HiOutlineLocationMarker className="text-6xl text-gray-400 dark:text-gray-500 mx-auto mb-4" />
-              <p className="text-xl text-gray-600 dark:text-gray-300 font-semibold">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/40 to-purple-100/40 dark:from-transparent dark:to-transparent"></div>
+            <div className="text-center relative z-10">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+                <HiOutlineLocationMarker className="text-5xl text-white" />
+              </div>
+              <p className="text-xl text-gray-900 dark:text-gray-300 font-bold">
                 Interactive Map Coming Soon
               </p>
-              <p className="text-gray-500 dark:text-gray-400 mt-2">
+              <p className="text-gray-700 dark:text-gray-400 mt-2 font-medium">
                 123 Innovation Hub, Tech Park, Bengaluru
               </p>
             </div>

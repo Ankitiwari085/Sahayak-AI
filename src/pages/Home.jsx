@@ -155,29 +155,30 @@ export default function HomePage() {
                 visible: { opacity: 1, y: 0 }
               }}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="group relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="group relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-blue-300"
             >
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-2xl group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-transparent dark:via-transparent dark:to-transparent rounded-3xl opacity-60"></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-300 dark:bg-blue-900/30 rounded-full blur-2xl group-hover:bg-blue-400 dark:group-hover:bg-blue-800/50 transition-all duration-300"></div>
               <div className="relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300 shadow-lg">
-                  <MdBuild className="text-white text-3xl" />
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  <MdBuild className="text-white text-4xl" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">AI Resume Builder</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 font-medium">
                   Create professional, ATS-friendly resumes in minutes with our AI-powered builder. Tailored specifically for skilled trades and blue-collar professionals with industry-specific templates.
                 </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-blue-500" />
-                    <span>Voice & Chat Input</span>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-blue-600 text-lg" />
+                    <span className="font-semibold">Voice & Chat Input</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-blue-500" />
-                    <span>Professional Templates</span>
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-blue-600 text-lg" />
+                    <span className="font-semibold">Professional Templates</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-blue-500" />
-                    <span>Instant Download</span>
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-blue-600 text-lg" />
+                    <span className="font-semibold">Instant Download</span>
                   </div>
                 </div>
               </div>
@@ -190,29 +191,30 @@ export default function HomePage() {
                 visible: { opacity: 1, y: 0 }
               }}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="group relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="group relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-green-300"
             >
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-green-100 dark:bg-green-900/30 rounded-full blur-2xl group-hover:bg-green-200 dark:group-hover:bg-green-800/50 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 dark:from-transparent dark:via-transparent dark:to-transparent rounded-3xl opacity-60"></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-green-300 dark:bg-green-900/30 rounded-full blur-2xl group-hover:bg-green-400 dark:group-hover:bg-green-800/50 transition-all duration-300"></div>
               <div className="relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300 shadow-lg">
-                  <MdQuestionAnswer className="text-white text-3xl" />
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  <MdQuestionAnswer className="text-white text-4xl" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Interview Preparation</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 font-medium">
                   Build confidence with AI-powered interview practice. Get common questions, suggested answers, and personalized tips to ace your next job interview.
                 </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-green-500" />
-                    <span>Mock Interviews</span>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-green-600 text-lg" />
+                    <span className="font-semibold">Mock Interviews</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-green-500" />
-                    <span>Answer Suggestions</span>
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-green-600 text-lg" />
+                    <span className="font-semibold">Answer Suggestions</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-green-500" />
-                    <span>Industry-Specific Tips</span>
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-green-600 text-lg" />
+                    <span className="font-semibold">Industry-Specific Tips</span>
                   </div>
                 </div>
               </div>
@@ -225,29 +227,30 @@ export default function HomePage() {
                 visible: { opacity: 1, y: 0 }
               }}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="group relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="group relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-purple-300"
             >
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-purple-100 dark:bg-purple-900/30 rounded-full blur-2xl group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 dark:from-transparent dark:via-transparent dark:to-transparent rounded-3xl opacity-60"></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-purple-300 dark:bg-purple-900/30 rounded-full blur-2xl group-hover:bg-purple-400 dark:group-hover:bg-purple-800/50 transition-all duration-300"></div>
               <div className="relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300 shadow-lg">
-                  <MdWork className="text-white text-3xl" />
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                  <MdWork className="text-white text-4xl" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Application Tracking</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 font-medium">
                   Never lose track of your job applications. Organize, manage, and follow up on all your applications in one centralized dashboard with smart reminders.
                 </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-purple-500" />
-                    <span>Application Dashboard</span>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-purple-600 text-lg" />
+                    <span className="font-semibold">Application Dashboard</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-purple-500" />
-                    <span>Status Tracking</span>
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-purple-600 text-lg" />
+                    <span className="font-semibold">Status Tracking</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <FaCheckCircle className="text-purple-500" />
-                    <span>Follow-up Reminders</span>
+                  <div className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-300 bg-white/80 dark:bg-slate-700/50 p-2 rounded-lg">
+                    <FaCheckCircle className="text-purple-600 text-lg" />
+                    <span className="font-semibold">Follow-up Reminders</span>
                   </div>
                 </div>
               </div>
@@ -375,14 +378,15 @@ export default function HomePage() {
               }}
               className="space-y-8"
             >
-              <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-lg">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl border-2 border-blue-100 dark:border-slate-700 overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-transparent dark:to-transparent opacity-50"></div>
+                <div className="flex items-start gap-4 mb-4 relative">
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <FaLightbulb className="text-white text-2xl" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Our Mission</h3>
-                    <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
                       To empower skilled workers worldwide by providing simple, fast, and intelligent resume-building tools. 
                       We eliminate barriers like language complexity, technical hurdles, and format confusion — ensuring that 
                       everyone can present their skills professionally and compete confidently in the job market.
@@ -391,14 +395,15 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-lg">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl border-2 border-green-100 dark:border-slate-700 overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-transparent dark:to-transparent opacity-50"></div>
+                <div className="flex items-start gap-4 mb-4 relative">
+                  <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <FaHandshake className="text-white text-2xl" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Our Promise</h3>
-                    <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
                       We believe every skilled professional deserves a resume that truly reflects their experience and capabilities. 
                       Our platform is built with you in mind — no hidden fees, no complicated processes, just straightforward 
                       tools that help you land the job you deserve.
@@ -415,13 +420,14 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl"
+            className="relative bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-gray-200 dark:border-slate-700 overflow-hidden"
           >
-            <div className="text-center mb-12">
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-transparent dark:via-transparent dark:to-transparent opacity-40"></div>
+            <div className="text-center mb-12 relative">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 How It Works
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-lg">
+              <p className="text-gray-700 dark:text-gray-300 text-lg font-medium">
                 Three simple steps to your professional resume
               </p>
             </div>
@@ -437,7 +443,7 @@ export default function HomePage() {
                   transition: { staggerChildren: 0.2 }
                 }
               }}
-              className="grid md:grid-cols-3 gap-8"
+              className="grid md:grid-cols-3 gap-8 relative"
             >
               {/* Step 1 */}
               <motion.div
@@ -450,14 +456,17 @@ export default function HomePage() {
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
                   1
                 </div>
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 pt-12 shadow-md hover:shadow-xl transition-all duration-300">
-                  <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Mic className="text-blue-600 dark:text-blue-300 w-8 h-8" />
+                <div className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 pt-12 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-blue-100 dark:border-slate-700 overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-transparent dark:to-transparent opacity-50"></div>
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 dark:bg-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <Mic className="text-white dark:text-blue-300 w-8 h-8" />
+                    </div>
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Share Your Story</h4>
+                    <p className="text-gray-800 dark:text-gray-300 font-medium">
+                      Use voice or chat to tell us about your work experience, skills, and achievements. Our AI understands you.
+                    </p>
                   </div>
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Share Your Story</h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Use voice or chat to tell us about your work experience, skills, and achievements. Our AI understands you.
-                  </p>
                 </div>
               </motion.div>
 
@@ -472,14 +481,17 @@ export default function HomePage() {
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
                   2
                 </div>
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 pt-12 shadow-md hover:shadow-xl transition-all duration-300">
-                  <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <FaClipboardList className="text-green-600 dark:text-green-300 w-8 h-8" />
+                <div className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 pt-12 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-green-100 dark:border-slate-700 overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-transparent dark:to-transparent opacity-50"></div>
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 dark:bg-green-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <FaClipboardList className="text-white dark:text-green-300 w-8 h-8" />
+                    </div>
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Choose Template</h4>
+                    <p className="text-gray-800 dark:text-gray-300 font-medium">
+                      Pick from professional templates designed specifically for your industry and role. Preview in real-time.
+                    </p>
                   </div>
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Choose Template</h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Pick from professional templates designed specifically for your industry and role. Preview in real-time.
-                  </p>
                 </div>
               </motion.div>
 
@@ -494,14 +506,17 @@ export default function HomePage() {
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
                   3
                 </div>
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 pt-12 shadow-md hover:shadow-xl transition-all duration-300">
-                  <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <FaRocket className="text-purple-600 dark:text-purple-300 w-8 h-8" />
+                <div className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 pt-12 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-purple-100 dark:border-slate-700 overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-transparent dark:to-transparent opacity-50"></div>
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 dark:bg-purple-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <FaRocket className="text-white dark:text-purple-300 w-8 h-8" />
+                    </div>
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Download & Apply</h4>
+                    <p className="text-gray-800 dark:text-gray-300 font-medium">
+                      Get your polished resume instantly. Download as PDF and start applying to jobs with confidence.
+                    </p>
                   </div>
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Download & Apply</h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Get your polished resume instantly. Download as PDF and start applying to jobs with confidence.
-                  </p>
                 </div>
               </motion.div>
             </motion.div>
