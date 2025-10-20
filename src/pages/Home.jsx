@@ -127,10 +127,14 @@ export default function HomePage() {
                 🛠️
               </div>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
-              Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Services</span>
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
+  <span className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-blue-500 mb-6">Our</span>{' '}
+  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+    Services
+  </span>
+</h2>
+
+            <p className="text-lg md:text-xl text-gray-600 dark:text-black-300 max-w-3xl mx-auto leading-relaxed">
               Comprehensive tools designed to help you succeed at every step of your job search journey — from resume creation to interview preparation and application tracking.
             </p>
           </motion.div>
@@ -318,10 +322,10 @@ export default function HomePage() {
                 💼
               </div>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-blue-500 mb-6">
               About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">SahayakAI</span>
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-black-300 max-w-4xl mx-auto leading-relaxed">
               We're on a mission to revolutionize how blue-collar professionals create resumes and find jobs. 
               Our AI-powered platform breaks down barriers, making professional resume building accessible to everyone, 
               regardless of language skills or technical expertise.

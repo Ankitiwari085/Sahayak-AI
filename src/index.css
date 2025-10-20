@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "tailwindcss";
 /* If you're using daisyUI as a Tailwind plugin, configure it in your Tailwind config instead of using @plugin here. */
 

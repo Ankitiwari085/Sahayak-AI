@@ -72,7 +72,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-blue-50/30 to-white dark:from-slate-900 dark:to-slate-800 dark:bg-gradient-to-b transition-colors pt-16">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Hero Section */}
       <motion.section
         initial="hidden"
@@ -94,14 +94,14 @@ export default function Contact() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-blue-500 mb-6"
           >
             Get In <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Touch</span>
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            className="text-lg md:text-xl text-gray-800 dark:text-gray-300 leading-relaxed font-medium"
+            className="text-lg md:text-xl text-gray-800 dark:text-black-300 leading-relaxed font-medium"
           >
             Have questions, feedback, or need support? We're here to help! 
             Reach out to us through any of the channels below and our team will get back to you as soon as possible.
@@ -169,7 +169,7 @@ export default function Contact() {
       </section>
 
       {/* Main Contact Section */}
-      <section className="min-h-screen bg-gradient-to-b from-gray-50 via-blue-50/30 to-white dark:from-slate-900 dark:to-slate-800 dark:bg-gradient-to-b transition-colors pt-16">
+      <section className="flex flex-col min-h-screen bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
