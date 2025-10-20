@@ -4,6 +4,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { FaUserCircle } from 'react-icons/fa';
 import ProfileMenu from './ProfileMenu';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import logo from '../assets/helmet.png';
 
 export default function Navbar({ onAuthClick, user, onApplyClick, onProfileAction }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,9 +45,10 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
       <div className="flex justify-between items-center h-16 px-4 md:px-8">
         {/* Left side - Logo */}
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center text-white font-bold">
-            📄
+          <div className="w-16 h-16 rounded-md overflow-hidden flex items-center justify-center">
+               <img src={logo} alt="logo" className="w-full h-full object-cover" />
           </div>
+
           <Link to="/" className="text-xl font-semibold text-gray-800">SahayakAI</Link>
         </div>
 
