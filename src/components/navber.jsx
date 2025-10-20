@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FaUserCircle } from 'react-icons/fa';
 import ProfileMenu from './ProfileMenu';
@@ -10,6 +10,8 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuOpenProfile, setMenuOpenProfile] = useState(false);
   const profileRef = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [theme, setTheme] = useState(() => {
     try {
       const stored = localStorage.getItem('theme');
@@ -20,6 +22,24 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
       return 'light';
     }
   });
+
+  const scrollToSection = (sectionId) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    setMenuOpen(false);
+  };
 
   // Close profile menu when clicking outside
   useEffect(() => {
@@ -54,8 +74,8 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
 
         {/* Right side - Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4 text-gray-700 font-medium">
-          <a href="#services" className="hover:text-blue-600">Services</a>
-          <a href="#about" className="hover:text-blue-600">About</a>
+          <button onClick={() => scrollToSection('services')} className="hover:text-blue-600 cursor-pointer">Services</button>
+          <button onClick={() => scrollToSection('about')} className="hover:text-blue-600 cursor-pointer">About</button>
           <Link to="/contact" className="hover:text-blue-600">Contact</Link>
           <div className="flex items-center space-x-2">
             {/* theme toggle */}
@@ -110,8 +130,8 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
         <div className="md:hidden bg-white border-t border-gray-200 shadow-sm">
           <ul className="flex flex-col space-y-4 px-4 py-4">
             <li><Link to="/" onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium hover:text-blue-600">Home</Link></li>
-            <li><Link to="/about" onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium hover:text-blue-600">About</Link></li>
-            <li><Link to="/services" onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium hover:text-blue-600">Services</Link></li>
+            <li><button onClick={() => scrollToSection('services')} className="text-gray-700 font-medium hover:text-blue-600 w-full text-left">Services</button></li>
+            <li><button onClick={() => scrollToSection('about')} className="text-gray-700 font-medium hover:text-blue-600 w-full text-left">About</button></li>
             <li><Link to="/contact" onClick={() => setMenuOpen(false)} className="text-gray-700 font-medium hover:text-blue-600">Contact</Link></li>
             <li>
               <div className="flex items-center space-x-2">
