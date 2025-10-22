@@ -6,7 +6,7 @@ import ProfileMenu from './ProfileMenu';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import logo from '../assets/helmet.png';
 
-export default function Navbar({ onAuthClick, user, onApplyClick, onProfileAction }) {
+export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick, onProfileAction }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuOpenProfile, setMenuOpenProfile] = useState(false);
   const profileRef = useRef();
@@ -94,7 +94,11 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
               <button onClick={() => onAuthClick && onAuthClick()} className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">Login</button>
             ) : (
               <>
-                <button onClick={() => onApplyClick && onApplyClick()} className="px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">Apply</button>
+                {user.userType === 'employee' ? (
+                  <button onClick={() => onApplyClick && onApplyClick()} className="px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">Apply Job</button>
+                ) : (
+                  <button onClick={() => onPostJobClick && onPostJobClick()} className="px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">Post Job</button>
+                )}
                 <div className="relative" ref={profileRef}>
                   <button onClick={() => setMenuOpenProfile(!menuOpenProfile)} className="text-2xl text-gray-700"><FaUserCircle /></button>
                   {menuOpenProfile && (
@@ -145,7 +149,17 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onProfileActio
                     {theme === 'dark' ? <FiSun className="text-yellow-500 w-5 h-5" /> : <FiMoon className="text-gray-600 w-5 h-5" />}
                   </button>
                 </div>
-                <button onClick={() => onAuthClick && onAuthClick()} className="w-full px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">Login</button>
+                {!user ? (
+                  <button onClick={() => onAuthClick && onAuthClick()} className="w-full px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">Login</button>
+                ) : (
+                  <>
+                    {user.userType === 'employee' ? (
+                      <button onClick={() => onApplyClick && onApplyClick()} className="w-full px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">Apply Job</button>
+                    ) : (
+                      <button onClick={() => onPostJobClick && onPostJobClick()} className="w-full px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">Post Job</button>
+                    )}
+                  </>
+                )}
               </div>
             </li>
           </ul>

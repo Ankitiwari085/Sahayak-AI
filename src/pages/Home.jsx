@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { Mic, MessageCircle } from "lucide-react";
 import { FaUserCog, FaFileAlt, FaRocket, FaClipboardList, FaComments, FaPaperPlane, FaLightbulb, FaHandshake, FaCheckCircle } from "react-icons/fa";
@@ -6,10 +6,12 @@ import { MdBuild, MdQuestionAnswer, MdWork } from "react-icons/md";
 import resumeImg from "../assets/resume.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../router";
+import VoiceResumeModal from "../components/VoiceResumeModal";
 
 export default function HomePage() {
   const navigate = useNavigate();
   const { user, openAuth } = useContext(AuthContext);
+  const [showVoiceModal, setShowVoiceModal] = useState(false);
   const features = [
     {
       icon: FaUserCog,
@@ -47,7 +49,7 @@ export default function HomePage() {
             voice or chat.
           </p>
        <div className="flex space-x-4 mb-6">
-  <button onClick={()=>{ if(!user) { openAuth(); } else { navigate('/chat'); } }} className="flex items-center px-5 py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-lg font-semibold hover:opacity-90 transition">
+  <button onClick={()=>{ if(!user) { openAuth(); } else { setShowVoiceModal(true); } }} className="flex items-center px-5 py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-lg font-semibold hover:opacity-90 transition">
       <Mic className="w-5 h-5 mr-2" />
       Start with Voice
     </button>
@@ -57,6 +59,13 @@ export default function HomePage() {
       Start with Chat
     </button>
 </div>
+
+      {/* Voice Resume Modal */}
+      <VoiceResumeModal 
+        open={showVoiceModal} 
+        onClose={() => setShowVoiceModal(false)} 
+        user={user}
+      />
 
 
           <p className="text-gray-400 italic">
