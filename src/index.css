@@ -6,6 +6,7 @@
 /* If you're using daisyUI as a Tailwind plugin, configure it in your Tailwind config instead of using @plugin here. */
 
 /* Auth modal styles */
+
 .auth-backdrop {
 	background: rgba(15, 23, 42, 0.5); /* semi-dark overlay */
 	backdrop-filter: blur(6px);
@@ -116,4 +117,49 @@ html {
 .animation-delay-4000 {
 	animation-delay: 4s;
 }
+/* Google Translate Styles */
+.goog-logo-link {
+  display: none !important;
+}
 
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 14px;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+#google_translate_element {
+  display: inline-block;
+}
+
+.goog-te-combo {
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.goog-te-combo:hover {
+  border-color: #3b82f6;
+}
+
+/* Dark theme support */
+.dark .goog-te-combo {
+  background: #1f2937;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+.dark .goog-te-combo:hover {
+  border-color: #60a5fa;
+}
