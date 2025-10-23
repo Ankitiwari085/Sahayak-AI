@@ -66,25 +66,26 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
   ];
 
   return (
-    <div className={`min-h-screen pt-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-gray-50'} transition-colors`}>
-      <div className="container mx-auto px-4 py-8">
-        <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-6 mb-6 shadow-sm`}>
-          <div className="flex justify-between items-center flex-wrap gap-4">
-            <div className="flex items-center gap-4">
-              <div className={`w-16 h-16 rounded-full ${theme === 'dark' ? 'bg-blue-900/30' : 'bg-blue-100'} flex items-center justify-center`}>
-                <FaUser className={`text-3xl ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`} />
-              </div>
+    <div className={`min-h-screen pt-16 sm:pt-18 md:pt-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-gray-50'} transition-colors`}>
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
+        <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-4 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6 shadow-sm`}>
+          <div className="flex justify-between items-center flex-wrap gap-3 sm:gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
+             <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full ${theme === 'dark' ? 'bg-blue-900/30' : 'bg-blue-100'} flex items-center justify-center flex-shrink-0`}>
+  <FaUser className={`text-2xl sm:text-3xl ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`} />
+</div>
+
               <div>
-                <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Welcome, {profileData.name}!</h1>
-                <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{profileData.profession}</p>
+                <h1 className={`text-xl sm:text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Welcome, {profileData.name}!</h1>
+                <p className={`text-sm sm:text-base ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{profileData.profession}</p>
               </div>
             </div>
-            <button onClick={onSignOut} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Sign Out</button>
+            <button onClick={onSignOut} className="px-3 sm:px-4 py-2 bg-red-600 text-white text-sm sm:text-base rounded-lg hover:bg-red-700 whitespace-nowrap">Sign Out</button>
           </div>
         </div>
 
-        <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-2 mb-6 shadow-sm`}>
-          <div className="flex flex-wrap gap-2">
+        <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-1.5 sm:p-2 mb-4 sm:mb-5 md:mb-6 shadow-sm overflow-x-auto`}>
+          <div className="flex flex-nowrap gap-1 sm:gap-2 min-w-max sm:min-w-0">
             {[
               { id: 'overview', label: 'Overview', icon: FaChartLine },
               { id: 'profile', label: 'Profile', icon: FaUser },
@@ -93,11 +94,11 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
               { id: 'settings', label: 'Settings', icon: FaCog },
             ].map(tab => (
               <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium ${
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base whitespace-nowrap ${
                   activeTab === tab.id ? 'bg-blue-600 text-white' : 
                   theme === 'dark' ? 'text-gray-400 hover:bg-slate-700' : 'text-gray-600 hover:bg-gray-100'
                 }`}>
-                <tab.icon /><span className="hidden sm:inline">{tab.label}</span>
+                <tab.icon className="text-base sm:text-lg" /><span>{tab.label}</span>
               </button>
             ))}
           </div>
@@ -105,41 +106,41 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
 
         {activeTab === 'overview' && (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
               {stats.map((s, i) => (
-                <div key={i} className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-6 shadow-sm`}>
+                <div key={i} className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-4 sm:p-5 md:p-6 shadow-sm`}>
                   <div className="flex justify-between items-center">
                     <div>
                       <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{s.label}</p>
-                      <p className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{s.value}</p>
+                      <p className={`text-2xl sm:text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{s.value}</p>
                     </div>
-                    <s.icon className={`text-2xl ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`} />
+                    <s.icon className={`text-xl sm:text-2xl ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`} />
                   </div>
                 </div>
               ))}
             </div>
-            <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-6 shadow-sm`}>
-              <h3 className={`text-lg font-semibold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Quick Actions</h3>
-              <div className="grid md:grid-cols-3 gap-4">
-                <button onClick={() => navigate('/chat')} className={`flex items-center gap-3 p-4 rounded-lg ${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600' : 'bg-blue-50 hover:bg-blue-100'}`}>
-                  <FaFileAlt className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
+            <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-4 sm:p-5 md:p-6 shadow-sm`}>
+              <h3 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Quick Actions</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                <button onClick={() => navigate('/chat')} className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg text-sm sm:text-base ${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600' : 'bg-blue-50 hover:bg-blue-100'}`}>
+                  <FaFileAlt className={`${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} text-lg sm:text-xl flex-shrink-0`} />
                   <span className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Create Resume</span>
                 </button>
-                <button onClick={() => setActiveTab('applications')} className={`flex items-center gap-3 p-4 rounded-lg ${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600' : 'bg-green-50 hover:bg-green-100'}`}>
-                  <FaBriefcase className={theme === 'dark' ? 'text-green-400' : 'text-green-600'} />
+                <button onClick={() => setActiveTab('applications')} className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg text-sm sm:text-base ${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600' : 'bg-green-50 hover:bg-green-100'}`}>
+                  <FaBriefcase className={`${theme === 'dark' ? 'text-green-400' : 'text-green-600'} text-lg sm:text-xl flex-shrink-0`} />
                   <span className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Applications</span>
                 </button>
-                <button onClick={() => setActiveTab('profile')} className={`flex items-center gap-3 p-4 rounded-lg ${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600' : 'bg-purple-50 hover:bg-purple-100'}`}>
-                  <FaUser className={theme === 'dark' ? 'text-purple-400' : 'text-purple-600'} />
+                <button onClick={() => setActiveTab('profile')} className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg text-sm sm:text-base ${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600' : 'bg-purple-50 hover:bg-purple-100'}`}>
+                  <FaUser className={`${theme === 'dark' ? 'text-purple-400' : 'text-purple-600'} text-lg sm:text-xl flex-shrink-0`} />
                   <span className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Edit Profile</span>
                 </button>
               </div>
             </div>
 
             {/* Recent Applications */}
-            <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-6 shadow-sm`}>
-              <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Recent Applications</h3>
+            <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-4 sm:p-5 md:p-6 shadow-sm`}>
+              <div className="flex justify-between items-center mb-3 sm:mb-4">
+                <h3 className={`text-lg sm:text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Recent Applications</h3>
                 {applications.length > 0 && (
                   <button 
                     onClick={() => setActiveTab('applications')}
@@ -153,11 +154,11 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
                 <div className="space-y-3">
                   {applications.slice(-3).reverse().map((app, idx) => (
                     <div key={idx} className={`flex items-center justify-between p-3 rounded-lg ${theme === 'dark' ? 'bg-slate-700' : 'bg-gray-50'}`}>
-                      <div className="flex-1">
-                        <p className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{app.position || 'Position'}</p>
-                        <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{app.company || 'Company'} • Applied {new Date(app.id).toLocaleDateString()}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className={`font-medium truncate ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{app.position || 'Position'}</p>
+                        <p className={`text-xs sm:text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} truncate`}>{app.company || 'Company'} • Applied {new Date(app.id).toLocaleDateString()}</p>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                         app.status === 'accepted' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
                         app.status === 'rejected' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' :
                         'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
@@ -168,11 +169,11 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8">
-                  <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} mb-3`}>No applications yet. Start by creating your resume!</p>
+                <div className="text-center py-6 sm:py-8">
+                  <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} mb-2 sm:mb-3 text-sm sm:text-base`}>No applications yet. Start by creating your resume!</p>
                   <button 
                     onClick={() => navigate('/chat')}
-                    className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-4 sm:px-5 py-2 bg-blue-600 text-white text-sm sm:text-base rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     Create Resume Now
                   </button>
@@ -183,31 +184,31 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
         )}
 
         {activeTab === 'profile' && (
-          <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-6 shadow-sm`}>
-            <div className="flex justify-between mb-6">
-              <h3 className={`text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Profile</h3>
+          <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-4 sm:p-5 md:p-6 shadow-sm`}>
+            <div className="flex flex-col sm:flex-row justify-between mb-4 sm:mb-6 gap-3">
+              <h3 className={`text-lg sm:text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Profile</h3>
               {!isEditing ? (
-                <button onClick={() => setIsEditing(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg">
+                <button onClick={() => setIsEditing(true)} className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 bg-blue-600 text-white text-sm sm:text-base rounded-lg whitespace-nowrap">
                   <FaEdit /> Edit
                 </button>
               ) : (
                 <div className="flex gap-2">
-                  <button onClick={() => { onUpdateProfile?.(profileData); setIsEditing(false); }} className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg">
+                  <button onClick={() => { onUpdateProfile?.(profileData); setIsEditing(false); }} className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 bg-green-600 text-white text-sm sm:text-base rounded-lg whitespace-nowrap">
                     <FaCheck /> Save
                   </button>
-                  <button onClick={() => setIsEditing(false)} className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg">
+                  <button onClick={() => setIsEditing(false)} className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 bg-gray-600 text-white text-sm sm:text-base rounded-lg whitespace-nowrap">
                     <FaTimes /> Cancel
                   </button>
                 </div>
               )}
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
               {Object.keys(profileData).map(key => (
                 <div key={key}>
-                  <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} capitalize`}>{key}</label>
+                  <label className={`block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} capitalize`}>{key}</label>
                   <input type="text" value={profileData[key]} disabled={!isEditing}
                     onChange={(e) => setProfileData({...profileData, [key]: e.target.value})}
-                    className={`w-full px-4 py-2 rounded-lg border ${theme === 'dark' ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-900'} ${!isEditing && 'opacity-60'}`} />
+                    className={`w-full px-3 sm:px-4 py-2 rounded-lg border text-sm sm:text-base ${theme === 'dark' ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-900'} ${!isEditing && 'opacity-60'}`} />
                 </div>
               ))}
             </div>
@@ -215,18 +216,18 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
         )}
 
         {activeTab === 'applications' && (
-          <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-6 shadow-sm`}>
-            <h3 className={`text-xl font-semibold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>My Applications</h3>
+          <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-xl p-4 sm:p-5 md:p-6 shadow-sm`}>
+            <h3 className={`text-lg sm:text-xl font-semibold mb-4 sm:mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>My Applications</h3>
             {applications.length > 0 ? (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {applications.map((app, i) => (
-                  <div key={i} className={`p-4 rounded-lg border ${theme === 'dark' ? 'bg-slate-700 border-slate-600' : 'bg-gray-50 border-gray-200'}`}>
-                    <div className="flex justify-between items-start mb-3">
-                      <div>
-                        <h4 className={`font-semibold text-lg ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{app.position || 'Position'}</h4>
-                        <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>{app.company || 'Company'}</p>
+                  <div key={i} className={`p-3 sm:p-4 rounded-lg border ${theme === 'dark' ? 'bg-slate-700 border-slate-600' : 'bg-gray-50 border-gray-200'}`}>
+                    <div className="flex flex-col sm:flex-row justify-between items-start mb-2 sm:mb-3 gap-2">
+                      <div className="min-w-0 flex-1">
+                        <h4 className={`font-semibold text-base sm:text-lg ${theme === 'dark' ? 'text-white' : 'text-gray-900'} truncate`}>{app.position || 'Position'}</h4>
+                        <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} text-sm truncate`}>{app.company || 'Company'}</p>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                         app.status === 'accepted' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
                         app.status === 'rejected' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' :
                         'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
@@ -245,13 +246,13 @@ export default function Dashboard({ user, applications = [], onUpdateProfile, on
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
-                <FaClipboardList className={`mx-auto text-6xl mb-4 ${theme === 'dark' ? 'text-gray-600' : 'text-gray-300'}`} />
-                <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} mb-4`}>No applications yet</p>
-                <p className={`text-sm ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'} mb-4`}>Start your career journey by applying for jobs</p>
+              <div className="text-center py-8 sm:py-10 md:py-12">
+                <FaClipboardList className={`mx-auto text-5xl sm:text-6xl mb-3 sm:mb-4 ${theme === 'dark' ? 'text-gray-600' : 'text-gray-300'}`} />
+                <p className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} mb-3 sm:mb-4 text-sm sm:text-base`}>No applications yet</p>
+                <p className={`text-xs sm:text-sm ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'} mb-3 sm:mb-4`}>Start your career journey by applying for jobs</p>
                 <button 
                   onClick={() => navigate('/')}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-4 sm:px-6 py-2 bg-blue-600 text-white text-sm sm:text-base rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Browse Jobs
                 </button>
