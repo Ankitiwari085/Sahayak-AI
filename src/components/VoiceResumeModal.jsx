@@ -39,7 +39,7 @@ export default function VoiceResumeModal({ open, onClose, user }) {
   const questions = [
     { key: 'name', question: 'Hello! Welcome to the AI Voice Resume Builder. What is your full name?', type: 'text' },
     { key: 'title', question: 'Great! What is your current job title or the position you are seeking?', type: 'text' },
-    { key: 'email', question: 'What is your email address?', type: 'email' },
+    { key: 'email', question: 'What is your email address?', type: 'text' },
     { key: 'phone', question: 'Please provide your phone number.', type: 'phone' },
     { key: 'location', question: 'Which city and state do you currently live in?', type: 'text' },
     { key: 'skills', question: 'What are your main skills? Please list them one by one, separated by commas.', type: 'array' },

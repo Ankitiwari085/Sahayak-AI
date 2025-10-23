@@ -1,12 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
-import { FaUserCircle } from 'react-icons/fa';
-import ProfileMenu from './ProfileMenu';
-import { FiSun, FiMoon } from 'react-icons/fi';
-import logo from '../assets/helmet.png';
+import { FaUserCircle } from "react-icons/fa";
+import ProfileMenu from "./ProfileMenu";
+import { FiSun, FiMoon } from "react-icons/fi";
+import GoogleTranslate from "./GoogleTranslate";
+import logo from "../assets/helmet.png";
 
-export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick, onProfileAction }) {
+export default function Navbar({
+  onAuthClick,
+  user,
+  onApplyClick,
+  onPostJobClick,
+  onProfileAction,
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuOpenProfile, setMenuOpenProfile] = useState(false);
   const profileRef = useRef();
@@ -14,28 +21,32 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick
   const location = useLocation();
   const [theme, setTheme] = useState(() => {
     try {
-      const stored = localStorage.getItem('theme');
+      const stored = localStorage.getItem("theme");
       if (stored) return stored;
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-      return 'light';
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      )
+        return "dark";
+      return "light";
     } catch (e) {
-      return 'light';
+      return "light";
     }
   });
 
   const scrollToSection = (sectionId) => {
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (location.pathname !== "/") {
+      navigate("/");
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 100);
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
     setMenuOpen(false);
@@ -48,16 +59,18 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick
         setMenuOpenProfile(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   useEffect(() => {
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
-    try { localStorage.setItem('theme', theme) } catch (e) {}
+    if (theme === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {}
   }, [theme]);
 
   return (
@@ -90,6 +103,9 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick
               </button>
             </div>
 
+            {/* Google Translate */}
+            <GoogleTranslate />
+
             {!user ? (
               <button onClick={() => onAuthClick && onAuthClick()} className="px-3 xl:px-4 py-1.5 xl:py-2 rounded-lg bg-blue-600 text-white text-sm xl:text-base font-medium hover:bg-blue-700 whitespace-nowrap">Login</button>
             ) : (
@@ -104,11 +120,26 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick
                   {menuOpenProfile && (
                     <div className="absolute right-0 mt-2">
                       <ProfileMenu
-                        onProfile={() => { onProfileAction('profile'); setMenuOpenProfile(false); }}
-                        onApplications={() => { onProfileAction('applications'); setMenuOpenProfile(false); }}
-                        onNotifications={() => { onProfileAction('notifications'); setMenuOpenProfile(false); }}
-                        onSettings={() => { onProfileAction('settings'); setMenuOpenProfile(false); }}
-                        onSignOut={() => { onProfileAction('signout'); setMenuOpenProfile(false); }}
+                        onProfile={() => {
+                          onProfileAction("profile");
+                          setMenuOpenProfile(false);
+                        }}
+                        onApplications={() => {
+                          onProfileAction("applications");
+                          setMenuOpenProfile(false);
+                        }}
+                        onNotifications={() => {
+                          onProfileAction("notifications");
+                          setMenuOpenProfile(false);
+                        }}
+                        onSettings={() => {
+                          onProfileAction("settings");
+                          setMenuOpenProfile(false);
+                        }}
+                        onSignOut={() => {
+                          onProfileAction("signout");
+                          setMenuOpenProfile(false);
+                        }}
                       />
                     </div>
                   )}
@@ -125,7 +156,11 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick
             className="text-gray-800 focus:outline-none p-2 hover:bg-gray-100 rounded-md transition-colors"
             aria-label="Menu"
           >
-            {menuOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
+            {menuOpen ? (
+              <HiX className="w-6 h-6" />
+            ) : (
+              <HiMenu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
@@ -143,12 +178,20 @@ export default function Navbar({ onAuthClick, user, onApplyClick, onPostJobClick
                 <div className="flex items-center justify-between py-2 px-3">
                   <span className="text-sm text-gray-600 font-medium">Theme</span>
                   <button
-                    onClick={() => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))}
-                    title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
+                    onClick={() =>
+                      setTheme((prev) => (prev === "dark" ? "light" : "dark"))
+                    }
+                    title={
+                      theme === "dark" ? "Switch to light" : "Switch to dark"
+                    }
                     className={`p-2 rounded hover:bg-gray-100`}
                     aria-label="Toggle theme"
                   >
-                    {theme === 'dark' ? <FiSun className="text-yellow-500 w-5 h-5" /> : <FiMoon className="text-gray-600 w-5 h-5" />}
+                    {theme === "dark" ? (
+                      <FiSun className="text-yellow-500 w-5 h-5" />
+                    ) : (
+                      <FiMoon className="text-gray-600 w-5 h-5" />
+                    )}
                   </button>
                 </div>
                 {!user ? (

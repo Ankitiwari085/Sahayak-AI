@@ -6,6 +6,7 @@
 /* If you're using daisyUI as a Tailwind plugin, configure it in your Tailwind config instead of using @plugin here. */
 
 /* Auth modal styles */
+
 .auth-backdrop {
 	background: rgba(15, 23, 42, 0.5); /* semi-dark overlay */
 	backdrop-filter: blur(6px);
@@ -115,6 +116,10 @@ html {
 
 .animation-delay-4000 {
 	animation-delay: 4s;
+}
+/* Google Translate Styles */
+.goog-logo-link {
+  display: none !important;
 }
 
 /* Fade-in animation for chat messages */
