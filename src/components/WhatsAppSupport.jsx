@@ -4,7 +4,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsAppSupport() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const whatsappNumber = "919876543210"; // Replace with your actual WhatsApp number
+  const whatsappNumber = "919348083401"; // Replace with your actual WhatsApp number
   const defaultMessage = "Hi! I need help with the AI Resume Builder.";
 
   const handleWhatsAppClick = () => {
