@@ -9,6 +9,7 @@ export default function AuthModal({ open, onClose, onLogin }) {
   const [loginData, setLoginData] = useState({ identifier: '', password: '' });
   const [signupData, setSignupData] = useState({ name: '', identifier: '', password: '', organization: '' });
   const [errors, setErrors] = useState({});
+  const [otpSent, setOtpSent] = useState(false);
 
   if (!open) return null;
 
@@ -61,6 +62,28 @@ export default function AuthModal({ open, onClose, onLogin }) {
     return newErrors;
   };
 
+  const handleSendOtp = () => {
+    const newErrors = {};
+    if (!loginData.identifier.trim()) {
+      newErrors.identifier = 'Phone number is required';
+    } else {
+      const phoneRegex = /^[+]?[0-9]{10,15}$/;
+      if (!phoneRegex.test(loginData.identifier.replace(/\s/g, ''))) {
+        newErrors.identifier = 'Please enter a valid phone number';
+      }
+    }
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
+    setErrors({});
+    setOtpSent(true);
+    // Here you would typically call your OTP sending API
+    console.log('Sending OTP to:', loginData.identifier);
+  };
+
   const handleLogin = () => {
     const validationErrors = validateLogin();
     if (Object.keys(validationErrors).length > 0) {
@@ -75,6 +98,7 @@ export default function AuthModal({ open, onClose, onLogin }) {
       userType: loginType 
     }); 
     setLoginData({ identifier: '', password: '' });
+    setOtpSent(false);
     onClose();
   };
 
@@ -301,6 +325,7 @@ export default function AuthModal({ open, onClose, onLogin }) {
                                   errors.identifier ? 'border-red-500' : 'border-gray-300 focus:border-green-500'
                                 }`}
                                 placeholder="+91 98765 43210"
+                                disabled={otpSent}
                               />
                             </div>
                             {errors.identifier && (
@@ -317,54 +342,80 @@ export default function AuthModal({ open, onClose, onLogin }) {
                             )}
                           </div>
 
-                          {/* OTP/Password Field */}
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                              <FaLock className="text-purple-600" />
-                              OTP / Password
-                            </label>
-                            <div className="relative">
-                              <input
-                                type="text"
-                                value={loginData.password}
-                                onChange={(e) => { setLoginData({...loginData, password: e.target.value}); setErrors({...errors, password: ''}); }}
-                                className={`w-full px-4 py-3 bg-white/70 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all ${
-                                  errors.password ? 'border-red-500' : 'border-gray-300 focus:border-purple-500'
-                                }`}
-                                placeholder="Enter OTP or password"
-                              />
-                            </div>
-                            {errors.password && (
-                              <motion.p
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="text-red-500 text-xs mt-1 flex items-center gap-1"
+                          {/* Send OTP Button */}
+                          {!otpSent && (
+                            <motion.button
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              onClick={handleSendOtp}
+                              className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                            >
+                              Send OTP
+                            </motion.button>
+                          )}
+
+                          {/* OTP/Password Field - Only show after OTP is sent */}
+                          {otpSent && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                                <FaLock className="text-purple-600" />
+                                OTP / Password
+                              </label>
+                              <div className="relative">
+                                <input
+                                  type="text"
+                                  value={loginData.password}
+                                  onChange={(e) => { setLoginData({...loginData, password: e.target.value}); setErrors({...errors, password: ''}); }}
+                                  className={`w-full px-4 py-3 bg-white/70 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all ${
+                                    errors.password ? 'border-red-500' : 'border-gray-300 focus:border-purple-500'
+                                  }`}
+                                  placeholder="Enter OTP or password"
+                                />
+                              </div>
+                              {errors.password && (
+                                <motion.p
+                                  initial={{ opacity: 0, y: -10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  className="text-red-500 text-xs mt-1 flex items-center gap-1"
+                                >
+                                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                  </svg>
+                                  {errors.password}
+                                </motion.p>
+                              )}
+                              <button
+                                onClick={() => { setOtpSent(false); setLoginData({...loginData, password: ''}); setErrors({...errors, password: ''}); }}
+                                className="text-sm text-blue-600 hover:underline mt-2"
                               >
-                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                                </svg>
-                                {errors.password}
-                              </motion.p>
-                            )}
-                          </div>
+                                Change phone number?
+                              </button>
+                            </motion.div>
+                          )}
                         </>
                       )}
 
-                      {/* Login Button */}
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={handleLogin}
-                        className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all mt-6"
-                      >
-                        Log In
-                      </motion.button>
+                      {/* Login Button - Show for non-workers or workers with OTP sent */}
+                      {(loginType !== 'employee' || otpSent) && (
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={handleLogin}
+                          className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all mt-6"
+                        >
+                          Log In
+                        </motion.button>
+                      )}
 
                       {/* Switch to Signup */}
                       <div className="text-center text-sm text-gray-600 mt-4">
                         Don't have an account?{' '}
                         <button
-                          onClick={() => { setIsSignup(true); setErrors({}); }}
+                          onClick={() => { setIsSignup(true); setErrors({}); setOtpSent(false); }}
                           className="text-blue-600 font-semibold hover:underline"
                         >
                           Sign up

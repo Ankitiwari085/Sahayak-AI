@@ -231,53 +231,53 @@ const ResumePreview = ({ data }) => {
   };
 
   return (
-    <div className="p-3 sm:p-4 md:p-5 border-2 border-gray-200 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 shadow-lg h-full overflow-y-auto text-black dark:text-gray-100 transition-colors ">
+    <div className="p-3 sm:p-4 md:p-5 border-2 border-gray-200 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 shadow-lg h-full overflow-y-auto text-gray-900 dark:text-gray-100 transition-colors ">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">{data.name || 'Your Name'}</h1>
       </div>
-      <p className="text-sm sm:text-base font-semibold text-black dark:text-gray-300">{data.title || 'Professional Title'}</p>
-      <div className="text-xs sm:text-sm flex flex-wrap gap-1 sm:gap-2 mt-2 text-black dark:text-gray-400">
+      <p className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300">{data.title || 'Professional Title'}</p>
+      <div className="text-xs sm:text-sm flex flex-wrap gap-1 sm:gap-2 mt-2 text-gray-600 dark:text-gray-400">
         <span>{data.email || 'email@example.com'}</span> • <span>{data.phone || '+91 XXXXX XXXXX'}</span> • <span>{data.location || 'City, State'}</span>
       </div>
 
       <div className="mt-4 sm:mt-5">
-        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-black dark:text-white">Skills</h3>
+        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-gray-900 dark:text-white">Skills</h3>
         <div className="flex gap-1.5 sm:gap-2 flex-wrap">
           {(data.skills||[]).length > 0
             ? data.skills.map((skill, i) => (
-                <span key={i} className="bg-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 dark:bg-gradient-to-r text-blue-800 dark:text-blue-300 px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium border border-blue-300 dark:border-blue-700 shadow-sm">{skill || `Skill ${i + 1}`}</span>
+                <span key={i} className="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 text-blue-800 dark:text-blue-300 px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium border border-blue-300 dark:border-blue-700 shadow-sm">{skill || `Skill ${i + 1}`}</span>
               ))
-            : <span className="text-xs sm:text-sm text-black dark:text-gray-400 italic">No skills added</span>}
+            : <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 italic">No skills added</span>}
         </div>
       </div>
 
       <div className="mt-4 sm:mt-5">
-        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-black dark:text-white">Work Experience</h3>
+        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-gray-900 dark:text-white">Work Experience</h3>
         {(data.experience||[]).length > 0
           ? data.experience.map((exp, i) => (
-              <div key={i} className="mb-3 p-3 bg-white dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600">
-                <p className="font-bold text-sm sm:text-base text-black dark:text-white">{exp.title || 'Job Title'}</p>
-                <p className="text-xs sm:text-sm text-black dark:text-gray-400 mt-1">{exp.company || 'Company Name'} • {exp.year || '2020 - Present'}</p>
-                <ul className="list-disc list-inside text-xs sm:text-sm mt-2 space-y-1 text-black dark:text-gray-300">
+              <div key={i} className="mb-3 p-3 bg-gray-50 dark:bg-slate-700/50 rounded-lg border border-gray-200 dark:border-slate-600">
+                <p className="font-bold text-sm sm:text-base text-gray-900 dark:text-white">{exp.title || 'Job Title'}</p>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">{exp.company || 'Company Name'} • {exp.year || '2020 - Present'}</p>
+                <ul className="list-disc list-inside text-xs sm:text-sm mt-2 space-y-1 text-gray-700 dark:text-gray-300">
                   {(exp.points||[]).map((point, j) => (<li key={j}>{point || 'Key responsibility or achievement'}</li>))}
                 </ul>
               </div>
             ))
-          : <span className="text-xs sm:text-sm text-black dark:text-gray-400 italic">No work experience added</span>}
+          : <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 italic">No work experience added</span>}
       </div>
 
       <div className="mt-4 sm:mt-5">
-        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-black dark:text-white">Education</h3>
+        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-gray-900 dark:text-white">Education</h3>
         {(data.education||[]).length > 0
-          ? data.education.map((edu, i) => (<p key={i} className="text-xs sm:text-sm mb-2 text-black dark:text-gray-300 bg-white dark:bg-slate-700/50 p-2 rounded border border-gray-200 dark:border-slate-600">{edu.degree || 'Degree / Certification'} • {edu.institution || 'Institution Name'} • {edu.year || 'Year'}</p>))
-          : <span className="text-xs sm:text-sm text-black dark:text-gray-400 italic">No education added</span>}
+          ? data.education.map((edu, i) => (<p key={i} className="text-xs sm:text-sm mb-2 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-slate-700/50 p-2 rounded border border-gray-200 dark:border-slate-600">{edu.degree || 'Degree / Certification'} • {edu.institution || 'Institution Name'} • {edu.year || 'Year'}</p>))
+          : <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 italic">No education added</span>}
       </div>
 
       <div className="mt-4 sm:mt-5">
-        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-black dark:text-white">Certifications</h3>
+        <h3 className="text-sm sm:text-base font-bold border-l-4 border-blue-500 dark:border-blue-400 pl-2 mb-3 text-gray-900 dark:text-white">Certifications</h3>
         {(data.certifications||[]).length > 0
-          ? data.certifications.map((cert, i) => (<p key={i} className="text-xs sm:text-sm mb-2 text-black dark:text-gray-300 bg-white dark:bg-slate-700/50 p-2 rounded border border-gray-200 dark:border-slate-600">{cert.name || 'Certification Name'} - {cert.org || 'Issuing Organization'}</p>))
-          : <span className="text-xs sm:text-sm text-black dark:text-gray-400 italic">No certifications added</span>}
+          ? data.certifications.map((cert, i) => (<p key={i} className="text-xs sm:text-sm mb-2 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-slate-700/50 p-2 rounded border border-gray-200 dark:border-slate-600">{cert.name || 'Certification Name'} - {cert.org || 'Issuing Organization'}</p>))
+          : <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 italic">No certifications added</span>}
       </div>
 
       <button onClick={downloadResume} className="mt-4 sm:mt-5 w-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-600 dark:hover:to-blue-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
@@ -376,7 +376,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 dark:bg-gradient-to-br flex items-center justify-center p-3 sm:p-4 md:p-6 pt-20 sm:pt-22 md:pt-24 transition-colors duration-200">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 flex items-center justify-center p-3 sm:p-4 md:p-6 pt-20 sm:pt-22 md:pt-24 transition-colors duration-200">
       <div className={`w-full ${resumeReady ? 'max-w-7xl' : 'max-w-3xl'} transition-all duration-500`}>
         <div className={`grid ${resumeReady ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'} gap-4 sm:gap-5 md:gap-6`}>
           {/* Chat Section - Left Side */}
@@ -406,7 +406,7 @@ const App = () => {
               </div>
             </div>
 
-            <div className="p-4 sm:p-5 md:p-6 bg-white dark:bg-slate-900/50">
+            <div className="p-4 sm:p-5 md:p-6 bg-gray-50 dark:bg-slate-900/50">
               <div 
                 ref={chatContainerRef}
                 className="h-60 sm:h-72 md:h-80 lg:h-96 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-white dark:bg-slate-800 rounded-xl scroll-smooth shadow-inner border border-gray-200 dark:border-slate-700"
@@ -419,7 +419,7 @@ const App = () => {
                     transition={{ duration: 0.3 }}
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className={`max-w-[85%] sm:max-w-[80%] rounded-2xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base shadow-md transition-all duration-200 ${msg.role === 'ai' ? 'bg-blue-100 dark:from-blue-900/60 dark:to-blue-800/60 dark:bg-gradient-to-r text-gray-900 dark:text-gray-100 border-2 border-blue-300 dark:border-blue-600' : 'bg-gray-700 dark:from-slate-700 dark:to-slate-600 dark:bg-gradient-to-r text-white shadow-lg'}`}>
+                    <div className={`max-w-[85%] sm:max-w-[80%] rounded-2xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base shadow-md transition-all duration-200 ${msg.role === 'ai' ? 'bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/60 dark:to-blue-800/60 text-gray-900 dark:text-gray-100 border-2 border-blue-300 dark:border-blue-600' : 'bg-gradient-to-r from-gray-700 to-gray-800 dark:from-slate-700 dark:to-slate-600 text-white shadow-lg'}`}>
                       {msg.content}
                     </div>
                   </motion.div>
@@ -471,7 +471,7 @@ const App = () => {
                   </h3>
                   <p className="text-xs sm:text-sm text-purple-100">Review and download your professional resume</p>
                 </div>
-                <div className="p-4 sm:p-5 md:p-6 h-[400px] sm:h-[500px] lg:h-[calc(100vh-200px)] overflow-hidden bg-white dark:bg-slate-900/50">
+                <div className="p-4 sm:p-5 md:p-6 h-[400px] sm:h-[500px] lg:h-[calc(100vh-200px)] overflow-hidden bg-gray-50 dark:bg-slate-900/50">
                   <ResumePreview data={resumeData} />
                 </div>
               </motion.div>

@@ -17,6 +17,7 @@ import AuthModal from "./components/AuthModal";
 import ApplyModal from "./components/ApplyModal";
 import JobPostingModal from "./components/JobPostingModal";
 import ProfileView from "./pages/About";
+import WhatsAppSupport from "./components/WhatsAppSupport";
 // import Contact from "./pages/Contact";
 
 export const AuthContext = createContext({});
@@ -130,6 +131,9 @@ export default function Router() {
         </Routes>
 
         <Footer />
+
+        {/* WhatsApp Help & Support */}
+        <WhatsAppSupport />
 
         <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} onLogin={(u)=>setUser(u)} />
         <ApplyModal 
